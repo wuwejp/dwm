@@ -2704,7 +2704,7 @@ setup(void)
 		if (i < LENGTH(tags))
 			snprintf(tlabels[i], sizeof(tlabels[i]), "%s", tags[i]);
 		else
-			snprintf(tlabels[i], sizeof(tlabels[i]), "%d", i);
+			snprintf(tlabels[i], sizeof(tlabels[i]), "%d", i + 1);
 
 		w_tlabels[i] = TEXTW(tlabels[i]);
 	}

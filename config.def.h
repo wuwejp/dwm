@@ -86,12 +86,12 @@ static const Layout layouts[] = {
 /* client labels */
 static const char *clabels[] = {
 	"Q", "W", "E", "R", "T",
+	"A", "S", "D", "F", "G",
 };
 
 /* tag labels */
 static const char *tags[] = {
-	"A", "S", "D", "F", "G",
-	"Z", "X", "C", "V", "B", "N", "M",
+	"1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
 };
 
 /* key definitions */
@@ -177,33 +177,33 @@ static const Key keys[] = {
 	{ MODKEY,                      XK_End,      focusmon,             {.i =  1} },
 	{ MODKEY|ShiftMask,           XK_Home,      tagmon,               {.i =  1} },
 	{ MODKEY|ShiftMask,            XK_End,      tagmon,               {.i = -1} },
-	CLASSKEYS(                       XK_1,      1)
-	CLASSKEYS(                       XK_2,      2)
-	CLASSKEYS(                       XK_3,      3)
-	CLASSKEYS(                       XK_4,      4)
-	CLASSKEYS(                       XK_5,      5)
-	CLASSKEYS(                       XK_6,      6)
-	CLASSKEYS(                       XK_7,      7)
-	CLASSKEYS(                       XK_8,      8)
-	CLASSKEYS(                       XK_9,      9)
-	CLASSKEYS(                       XK_0,     10)
+	TAGKEYS(                         XK_1,      0)
+	TAGKEYS(                         XK_2,      1)
+	TAGKEYS(                         XK_3,      2)
+	TAGKEYS(                         XK_4,      3)
+	TAGKEYS(                         XK_5,      4)
+	TAGKEYS(                         XK_6,      5)
+	TAGKEYS(                         XK_7,      6)
+	TAGKEYS(                         XK_8,      7)
+	TAGKEYS(                         XK_9,      8)
+	TAGKEYS(                         XK_0,      9)
 	CLIENTKEYS(                      XK_q,      1)
 	CLIENTKEYS(                      XK_w,      2)
 	CLIENTKEYS(                      XK_e,      3)
 	CLIENTKEYS(                      XK_r,      4)
 	CLIENTKEYS(                      XK_t,      5)
-	TAGKEYS(                         XK_a,      0)
-	TAGKEYS(                         XK_s,      1)
-	TAGKEYS(                         XK_d,      2)
-	TAGKEYS(                         XK_f,      3)
-	TAGKEYS(                         XK_g,      4)
-	TAGKEYS(                         XK_z,      5)
-	TAGKEYS(                         XK_x,      6)
-	TAGKEYS(                         XK_c,      7)
-	TAGKEYS(                         XK_v,      8)
-	TAGKEYS(                         XK_b,      9)
-	TAGKEYS(                         XK_n,     10)
-	TAGKEYS(                         XK_m,     11)
+	CLIENTKEYS(                      XK_a,      6)
+	CLIENTKEYS(                      XK_s,      7)
+	CLIENTKEYS(                      XK_d,      8)
+	CLIENTKEYS(                      XK_f,      9)
+	CLIENTKEYS(                      XK_g,     10)
+	CLASSKEYS(                       XK_z,      1)
+	CLASSKEYS(                       XK_x,      2)
+	CLASSKEYS(                       XK_c,      3)
+	CLASSKEYS(                       XK_v,      4)
+	CLASSKEYS(                       XK_b,      5)
+	CLASSKEYS(                       XK_n,      6)
+	CLASSKEYS(                       XK_m,      7)
 };
 
 /* button definitions */
