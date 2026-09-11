@@ -132,8 +132,6 @@ struct Client {
 	Monitor *mon;
 	Class *class;
 	tag_t tags;
-
-	LayoutParams params;
 };
 
 typedef struct {
@@ -338,6 +336,7 @@ static Drw *drw;
 static Monitor *mons, *selmon;
 static Window root, wmcheckwin;
 static Class *classes;
+static LayoutParams tag_lt_params[sizeof(tag_t)];
 
 /* configuration, allows nested code to access above variables */
 #include "config.h"
@@ -377,9 +376,8 @@ LayoutParams *
 _layout_params(Monitor *m)
 {
 	if (m->curtags) {
-		for (Client *c = m->clients; c; c = c->next)
-			if (c->tags & m->curtags)
-				return &c->params;
+		int lsb = (int)log2(m->curtags & -m->curtags);
+		return &tag_lt_params[lsb];
 	} else {
 		if (m->curcls)
 			return &m->curcls->params;
@@ -2110,7 +2108,6 @@ manage(Window w, XWindowAttributes *wa)
 		if (XGetTransientForHint(dpy, w, &trans) && (t = wintoclient(trans))) {
 			c->mon = t->mon;
 			c->tags = t->tags;
-			c->params = t->params;
 		} else {
 			c->mon = selmon;
 			applyrules(c, class, instance);
@@ -2120,11 +2117,9 @@ manage(Window w, XWindowAttributes *wa)
 					c->mon->prevcls = c->mon->curcls;
 					c->mon->curcls = c->class;
 				}
-				c->params = c->class->params;
 			} else {
 				if (!c->tags)
 					c->tags = c->mon->curtags;
-				c->params = c->mon->sel ? c->mon->sel->params : c->class->params;
 			}
 		}
 
@@ -2708,6 +2703,9 @@ setup(void)
 
 		w_tlabels[i] = TEXTW(tlabels[i]);
 	}
+
+	for (int i = 0; i < sizeof(tag_t); i++)
+		tag_lt_params[i] = default_lt_params;
 
 	updategeom();
 	/* init atoms */
